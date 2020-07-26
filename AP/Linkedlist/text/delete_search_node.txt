@@ -1,0 +1,248 @@
+==============================================================================================================
+Q. Write a menu driven program for do the following:
+   1. Delete the node
+   2. Display the linked list
+   3. search the particular node:
+==============================================================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+struct student {
+	int r_no;
+	float marks;
+	struct student *next;
+};
+
+struct student *insert(struct student *first,int r_no,float mark){
+	struct student *temp = (struct student*)malloc(sizeof(struct student));
+	temp->r_no = r_no;
+	temp->marks=mark;
+	temp->next = first;
+	return temp;
+}
+
+struct student *delete (struct student *first, int no){
+	struct student *p;
+	struct student *temp;
+	if(first == NULL){
+		printf("\nLinked list is empty: \n");
+	}
+	else if(first->r_no == no) // deleted node is first node
+	{
+		temp = first;
+		first = first->next;
+		free(temp);
+		printf("\nFirst node is deleted successfully:\n");
+	}
+	// if deleted node is not the first node 
+	else{
+		p =first;
+		while(p->next != NULL && p->next->r_no != no) // check when not found the node which u want to delete
+		{
+			p = p->next;
+		}
+		if(p->next != NULL){
+			temp = p->next;
+			p->next = temp->next;
+			free(temp);
+			printf("\nNode is deleted successfully:\n");
+		}
+		else	// if p points to the last node than
+		{
+			printf("Record is not in the list:\n");
+		}
+	}
+	return first ;
+}
+void display(struct student *first){
+	struct student *temp = first;\
+	printf("The linkedlist is:\n");
+	printf("=======================\n");
+	printf("\nr_no \t Marks\n");
+	printf("=======================\n");
+	while(temp != NULL){
+		printf("%d\t",temp->r_no);
+		printf("%f\n",temp->marks);
+		temp = temp->next;
+	}
+	printf("\n");
+	printf("=======================\n");
+}
+
+void search_node(struct student *first, int no){
+	struct student *p = first;
+	int found = 0;
+	if(first == NULL){
+		printf("\nLinked list is empty:\n");
+	}
+	while(p->next != NULL){
+		if(p->r_no == no){
+			found = 1;
+			break;
+		}
+		p = p->next;
+	}
+	if( found == 1){
+		printf("Node is present in the list :\n");
+	}
+	else{
+		printf("Node is not present in the list :\n");
+	}	
+}
+int main(){
+	struct student *first = NULL;
+	struct student *temp = NULL;
+	int n,i,r_no,no,ch=1;
+	float mark;
+	printf("\nCreate the linked list:\n");
+	printf("Enter how many nodes you want to enter :\n");
+			scanf("%d",&n);
+			for(i=0;i<n;i++){
+				printf("Enter the roll No.\n");
+				scanf("%d",&r_no);
+				printf("Enter the marks:\n");
+				scanf("%f",&mark);
+				first = insert(first,r_no,mark);
+			}
+	
+	while(ch != 0){
+		printf("\n1-> Delete the node:\n");
+		printf("\n2-> Display the list\n");
+		printf("\n3-> SEarch the node:\n");
+		printf("\n0-> Exit:\n\n");
+		
+		printf("\nEnter the character from above:\n");
+		scanf("%d",&ch);	
+		if(ch == 1){
+			printf("Enter the Roll no of that node which you want to delete:\n");
+			scanf("%d",&no);
+			first = delete(first,no);
+		}
+		if(ch == 2){
+			display(first);
+		}
+		if(ch == 3){
+			printf("Enter the Roll no that you want to search:\n");
+			scanf("%d",&no);
+			search_node(first,no);
+		}
+		if(ch == 0){
+			exit(0);
+		}
+	}	
+	
+}
+
+==============================================================================================================
+
+Output:
+
+
+Create the linked list:
+Enter how many nodes you want to enter :
+3
+Enter the roll No.
+1
+Enter the marks:
+45
+Enter the roll No.
+2
+Enter the marks:
+65
+Enter the roll No.
+3
+Enter the marks:
+78
+
+1-> Delete the node:
+
+2-> Display the list
+
+3-> SEarch the node:
+
+0-> Exit:
+
+
+Enter the character from above:
+2
+The linkedlist is:
+=======================
+
+r_no     Marks
+=======================
+3       78.000000
+2       65.000000
+1       45.000000
+
+=======================
+
+1-> Delete the node:
+
+2-> Display the list
+
+3-> SEarch the node:
+
+0-> Exit:
+
+
+Enter the character from above:
+3
+Enter the Roll no that you want to search:
+2
+Node is present in the list :
+
+1-> Delete the node:
+
+2-> Display the list
+
+3-> SEarch the node:
+
+0-> Exit:
+
+
+Enter the character from above:
+1
+Enter the Roll no of that node which you want to delete:
+2
+
+
+1-> Delete the node:
+
+2-> Display the list
+
+3-> SEarch the node:
+
+0-> Exit:
+
+Enter the character from above:
+2
+The linkedlist is:
+=======================
+
+r_no     Marks
+=======================
+3       78.000000
+1       45.000000
+
+=======================
+
+Node is deleted successfully:
+
+1-> Delete the node:
+
+2-> Display the list
+
+3-> SEarch the node:
+
+0-> Exit:
+
+
+Enter the character from above:
+0
+
+--------------------------------
+Process exited after 32.06 seconds with return value 0
+Press any key to continue . . .
+
+==============================================================================================================
+

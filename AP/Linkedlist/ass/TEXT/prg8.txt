@@ -1,0 +1,200 @@
+Name : Neel Golarana
+Roll No: 09
+Sub: A.P.
+Class : MCA-II
+=========================================================================================================================
+8) Write a program to swap two consecutive elements of the given linked list. ( Swap only values )
+=========================================================================================================================
+
+//Write a program to swap two consecutive elements of the given linked list.  ( Swap only ) 
+#include<stdio.h>values
+#include<stdlib.h>
+struct student {
+	int r_no;
+	float marks;
+	struct student *next;
+};
+
+
+void display(struct student *first){
+	struct student *temp =first;
+	if(first ==  NULL){
+		printf("Linkedlist is empty:\n\n");
+	}
+	else{
+		printf("\n========================\n");
+		printf("NO \t\t Marks:\n");
+		printf("========================\n");
+		while(temp != NULL){
+			printf("%d\t\t",temp->r_no);
+			printf("%f\n",temp->marks);
+			temp = temp->next;	
+		}
+		printf("========================\n");
+	}
+}
+
+
+void insert(struct student **first,struct student **last){
+	struct student *temp = (struct student *)malloc(sizeof(struct student));
+	struct student *p;
+	printf("Enter the Roll No.\n");
+	scanf("%d",&temp->r_no);
+	printf("Enter the marks:\n");
+	scanf("%f",&temp->marks);
+	temp->next=NULL;
+		if(*first == NULL){
+			*first = temp ;
+			*last = temp;
+		}
+		else{
+			(*last)->next = temp ;
+			*last = temp ;
+		}
+}
+
+
+void pairswap(struct student *first){
+	struct student *temp = first;
+	float swp_m; // temporary var.
+	int swp_r;
+	while(temp != NULL && temp->next != NULL){
+		swp_r = temp->r_no;
+		swp_m = temp->marks;
+		temp->marks=temp->next->marks;
+		temp->r_no= temp->next->r_no;
+		temp->next->marks = swp_m;
+		temp->next->r_no = swp_r;
+		temp = temp->next->next; 
+	}
+	printf("\nNode swapping succesfully:\n");
+}
+
+int main(){
+	struct student *first;
+	struct student *last;
+	int no=1,n,i;
+	while(no != 0){
+		printf("\n1-> Insert the list:\n");
+		printf("2-> swap the marks of the list:\n");
+		printf("3-> Display the list before swaping the marks:\n");
+		printf("4-> Display the list after swaping the marks:\n");
+		printf("5-> Exit\n");
+		printf("\nEnter the No. What you want to do from above:\n");
+		scanf("%d",&no);
+		if(no == 0){
+			exit(1);
+		}
+		if(no == 1 ){
+			printf("ENter how many nodes you want to enter :\n");
+			scanf("%d",&n);
+			for(i=0;i<n;i++){
+				insert(&first,&last);
+			}
+		}
+		if(no == 2){
+		 	pairswap(first);
+		}
+		if(no == 3){
+			printf("Before swaping the marks of two consicutive nodes :");
+			display(first);
+		}
+		if(no == 4){
+			printf("After swaping the marks of two consicutive nodes :");
+			display(first);
+		}
+	}
+}
+
+=========================================================================================================================
+oUTPUT:
+=========================================================================================================================
+
+1-> Insert the list:
+2-> swap the marks of the list:
+3-> Display the list before swaping the marks:
+4-> Display the list after swaping the marks:
+5-> Exit
+
+Enter the No. What you want to do from above:
+1
+ENter how many nodes you want to enter :
+4
+Enter the Roll No.
+1
+Enter the marks:
+56
+Enter the Roll No.
+2
+Enter the marks:
+48
+Enter the Roll No.
+3
+Enter the marks:
+68
+Enter the Roll No.
+4
+Enter the marks:
+98
+
+1-> Insert the list:
+2-> swap the marks of the list:
+3-> Display the list before swaping the marks:
+4-> Display the list after swaping the marks:
+5-> Exit
+
+Enter the No. What you want to do from above:
+3
+Before swaping the marks of two consicutive nodes :
+========================
+NO               Marks:
+========================
+1               56.000000
+2               48.000000
+3               68.000000
+4               98.000000
+========================
+
+1-> Insert the list:
+2-> swap the marks of the list:
+3-> Display the list before swaping the marks:
+4-> Display the list after swaping the marks:
+5-> Exit
+
+Enter the No. What you want to do from above:
+2
+
+Node swapping succesfully:
+
+1-> Insert the list:
+2-> swap the marks of the list:
+3-> Display the list before swaping the marks:
+4-> Display the list after swaping the marks:
+5-> Exit
+
+Enter the No. What you want to do from above:
+4
+After swaping the marks of two consicutive nodes :
+========================
+NO               Marks:
+========================
+2               48.000000
+1               56.000000
+4               98.000000
+3               68.000000
+========================
+
+1-> Insert the list:
+2-> swap the marks of the list:
+3-> Display the list before swaping the marks:
+4-> Display the list after swaping the marks:
+5-> Exit
+
+Enter the No. What you want to do from above:
+0
+
+--------------------------------
+Process exited after 45.72 seconds with return value 1
+Press any key to continue . . .
+
+=========================================================================================================================

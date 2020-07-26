@@ -1,0 +1,134 @@
+Name : Neel S. Golarana
+Class: MCA II
+Sub  : A.P.
+========================================================================================================================
+
+/* Write a modular C program to create a linked list by inserting elements in the beginning of the linked list. 
+   Write display function to display created list.
+========================================================================================================================
+ */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct student{
+	int no;
+	float marks;
+	struct student* next;
+};
+
+struct student* insert(int no,float marks,struct student* first){
+	struct student* temp = (struct student*) malloc(sizeof(struct student));
+	temp->no=no;;
+	temp->marks=marks;
+	temp->next=first;
+	first = temp ;
+	return first;
+}
+
+void display(struct student* first){
+	struct student* temp = first;
+	printf("\nThe linkedlist is:\n");
+	while(temp != NULL){
+		printf(" %d",temp->no);
+		printf("  ");
+		printf(" %.2f",temp->marks);
+		printf("\t");
+		temp= temp->next;
+	}
+	printf("\n");
+}
+	
+int main(){
+	struct student* first = NULL;
+	struct student* temp = NULL;
+	int i=1,n=1;
+	int no,marks;
+	while (n!= 0 ){
+		printf("\n 1. insert node:");
+		printf("\n 2. Display the linked list:");
+		printf("\n 0. exit");
+		printf("\nEnter the no you want to do from above :\n");
+		scanf("%d",&n);
+		if(n!=1 || n!=2 || n!=0){
+			printf("\nEnter proper no.:\n");
+		}
+		else if(n == 1){
+			printf("Enter the no of student %d\n",i);
+			scanf("%d",&no);
+			printf("Enter the marks of student %d\n",i);
+			scanf("%d",&marks);
+			first = insert(no,marks,first);
+		}
+		else if(n==2){
+			display(first);
+		}
+		else{
+			exit(0);
+		}
+		i++;
+	}
+	/*printf("Enter how many data you want to add : \n");
+	scanf("%d",&n);
+	for(i=0;i<n;i++){
+		printf("Enter the no of student %d\n",i);
+		scanf("%d",&no);
+		printf("Enter the marks of student %d\n",i);
+		scanf("%d",&marks);
+		first = insert(no,marks,first);
+		display(first);
+	}*/
+}
+
+/*
+========================================================================================================================
+OUTPUT:
+
+ 1. insert node:
+ 2. Display the linked list :
+ 0. exit
+Enter the no you want to do from above :
+5
+
+Enter proper no.:
+
+ 1. insert node:
+ 2. Display the linked list:
+ 0. exit
+Enter the no you want to do from above :
+1
+Enter the no of student 1
+1
+Enter the marks of student 1
+65
+
+ 1. insert node:
+ 2. Display the linked list:
+ 0. exit
+Enter the no you want to do from above :
+1
+Enter the no of student 2
+2
+Enter the marks of student 2
+45
+
+ 1. insert node:
+ 2. Display the linked list:
+ 0. exit
+Enter the no you want to do from above :
+2
+
+The linkedlist is:
+ 2   45.00       1   65.00
+
+ 1. insert node:
+ 2. Display the linked list:
+ 0. exit
+Enter the no you want to do from above :
+0
+
+--------------------------------
+
+========================================================================================================================
+*/

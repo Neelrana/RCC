@@ -1,0 +1,71 @@
+*****************************************************************************************************************************************
+NAME    : NAMJOSHI SHUBHAM S.
+ROLL NO : 21
+CLASS   : MCA-II
+SUBJECT : ADVANCED PROGRAMMING(AP)
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+Q(11i):	Find length of the string and toggle the characters of the string.	
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+int find_length(char[]);
+void toggle(char[],int);
+void main()
+{
+	char str[30];
+	int length;
+	printf("Enter string: ");
+	gets(str);
+	length=find_length(str);
+	printf("Length of string is %d",length);
+	toggle(str,length);
+	printf("\nString after toggle of characters: ");
+	puts(str);
+	getch();
+}
+
+int find_length(char str[])
+{
+	char *sptr;
+	int length=0;
+	sptr=str;
+	while(*(sptr+length) != '\0')
+	{
+		length++;
+	}
+	return length;
+}
+
+
+void toggle(char str[],int limit)
+{
+	int i;
+	char *sptr;
+	sptr=str;
+
+	for(i=0;i<limit;i++)
+	{
+		if((*(sptr+i) > 65 && *(sptr+i) < 91) ||(*(sptr+i) > 96 && *(sptr+i) < 123))
+		{
+			if(*(sptr+i) > 90)
+				*(sptr+i)-=32;
+			else
+				*(sptr+i)+=32;
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+output:
+Enter string: ShUbHuUu
+Length of string is 8
+String after toggle of characters: sHuBhUuU
+
+*****************************************************************************************************************************************
+
+

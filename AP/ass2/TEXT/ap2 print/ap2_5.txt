@@ -1,0 +1,134 @@
+*****************************************************************************************************************************************
+NAME    : NAMJOSHI SHUBHAM S.
+ROLL NO : 21
+CLASS   : MCA-II
+SUBJECT : ADVANCED PROGRAMMING(AP)
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+Q(5):	Write a program using pointers to implement the matrix multiplication.	
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+
+void getdata(int[][3],int,int,int[][3],int,int);
+void displaydata(int[][3],int,int);
+void multiplication(int[][3],int,int,int[][3],int,int,int[][3]);
+
+void main()
+{
+	int matrix1[3][3],matrix2[3][3],result_m[3][3],row1,column1,row2,column2,row3,column3;
+	printf("Enter limit of rows and columns in matrix1: ");
+	scanf("%d %d",&row1,&column1);
+	printf("Enter limit of rows and columns in matrix2: ");
+	scanf("%d %d",&row2,&column2);
+	if(column1 == row2)
+	{
+		row3=row1;
+		column3=column2;
+		getdata(matrix1,row1,column1,matrix2,row2,column2);
+		multiplication(matrix1,row1,column1,matrix2,row2,column2,result_m);
+		printf("After matrix multiplication:\n");
+		displaydata(result_m,row3,column3);
+	}
+	
+	else
+	{
+		printf("Matrix multiplication is not possible!!");
+	}
+	getch();
+	
+}
+
+void getdata(int m1[][3],int row1,int column1,int m2[][3],int row2,int column2)
+{
+	int i,j,(*mptr1)[3],(*mptr2)[3];
+	mptr1=m1;
+	mptr2=m2;
+	printf("Enter Matrix1:\n");
+	for(i=0;i<row1;i++)
+	{
+		for(j=0;j<column1;j++)
+		{
+			scanf("%d",*(mptr1)+j);
+		}
+		mptr1++;
+	}
+	printf("Enter Matrix2:\n");
+	for(i=0;i<row2;i++)
+	{
+		for(j=0;j<column2;j++)
+		{
+			scanf("%d",*(mptr2)+j);
+		}
+		mptr2++;
+	}
+
+}														
+
+void multiplication(int m1[][3],int row1,int column1,int m2[][3],int row2,int column2,int m3[][3])
+{
+	int i,j,k,(*mptr1)[3],(*mptr2)[3],(*mptr3)[3];
+	mptr1=m1;
+	mptr2=m2;
+	mptr3=m3;
+
+	printf("\n\n");
+	for(i=0;i<row1;i++)
+	{
+		for(j=0;j<column2;j++)
+		{
+			*(*(mptr3+i)+j)=0;
+			for(k=0;k<column1;k++)
+			{
+				*(*(mptr3+i)+j)+=*(*(mptr1+i)+k) * *(*(mptr2+k)+j);
+			}
+		}
+	}
+
+}
+
+void displaydata(int m[][3],int row,int column)
+{
+	int i,j,(*mptr)[3];
+	mptr=m;
+	printf("\nResult Matrix:\n");
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<column;j++)
+		{
+			printf("%d ",*(*(mptr)+j));
+		}
+		printf("\n");
+		mptr++;
+	}
+}
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+output1:
+Enter limit of rows and columns in matrix1: 2 3
+Enter limit of rows and columns in matrix2: 3 2
+Enter Matrix1:
+1 1 1
+1 1 1
+Enter Matrix2:
+2 2
+2 2
+2 2
+
+
+After matrix multiplication:
+
+Result Matrix:
+6 6
+6 6
+
+
+*****************************************************************************************************************************************
+output2:
+Enter limit of rows and columns in matrix1: 2 2
+Enter limit of rows and columns in matrix2: 3 3
+Matrix multiplication is not possible!!
+
+*****************************************************************************************************************************************

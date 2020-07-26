@@ -1,0 +1,67 @@
+*****************************************************************************************************************************************
+NAME    : NAMJOSHI SHUBHAM S.
+ROLL NO : 21
+CLASS   : MCA-II
+SUBJECT : ADVANCED PROGRAMMING(AP)
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+Q(11c):	Delete all occurrences of a character from a string.
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+void delete_ch(char[],char);
+
+void main()
+{
+	char str[10],ch;
+
+	printf("Enter string: ");
+	gets(str);
+	printf("Enter character to delete its all occurrences: ");
+	scanf("%c",&ch);
+	delete_ch(str,ch);
+	printf("After removing all occurrences of your character from string :");
+	puts(str);
+	getch();
+
+}
+
+void delete_ch(char str[],char ch)
+{
+	char *sptr=str;
+	int i,j,length,index;
+	length=strlen(str);
+
+	for(i=0;i<length;i++)
+	{
+		if(*(sptr+i) == ch)
+		{
+			j=i;
+			while(j<length-1)
+			{
+				*(sptr+j)=*(sptr+j+1);
+				j++;
+			}
+			*(sptr+length-1)='\0';
+			length--;
+			i--;
+		}
+	}
+
+
+}
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+output:
+Enter string: Rollwalas
+Enter character to delete its all occurrences: s
+After removing all occurrences of your character from string :Rollwala
+
+
+*****************************************************************************************************************************************
+
+

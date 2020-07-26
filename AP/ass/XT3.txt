@@ -1,0 +1,315 @@
+/**************************************************************************************************************************************************************************************
+
+NAME     : Pradip S Karmakar
+ROLL NO  : 10
+CLASS    : MCA (SEM-2)
+SUBJECT  : Advance Programing (AP)
+
+**************************************************************************************************************************************************************************************/
+
+
+/**************************************************************************************************************************************************************************************
+
+DEFINE :
+
+	3.	 Write a program that stores and displays the records of the customer. Thee following information for account of the customer is to be stored.
+		 Account no, account type, name, old balance, new balance, last payment, date of last payment. Take structure for storing the date 
+		 in days, months and year. Also display the current account status by comparing current payment and previous balance.
+		 Also calculate the current balance by  subtracting the current payment from the previous balance.
+ 
+**************************************************************************************************************************************************************************************/
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct {
+	int dd,mm,yy;
+}date;
+
+typedef struct {
+	int acc_no;
+	float old_balance,new_balance,last_payment;
+	char name[15];
+	char status[10];
+	date dateofpay;
+}customer;
+
+customer getData();
+void setPrint(customer[],int); 
+void menudriven(customer[],int);
+void main()
+{
+	customer c[50];
+	int i,total_cust;
+	printf("Enter Total Number of Customer : ");
+	scanf("%d",&total_cust);
+	for( i = 0; i < total_cust; i++ )
+	{
+		c[i] = getData();
+	}
+
+	setPrint(c,total_cust);
+	menudriven(c,total_cust);
+}
+
+customer getData()
+{
+	customer s;
+	printf("\n\nEnter Account Number : ");
+	scanf("%d",&s.acc_no);
+	printf("\n\nEnter The Customer's Name : ");
+	scanf("%s",s.name);
+	printf("\n\nEnter The Old Balance : ");
+	scanf("%f",&s.old_balance);
+	printf("\n\nEnter The Last Payment : ");
+	scanf("%f",&s.last_payment);
+	s.new_balance = s.old_balance - s.last_payment;
+	if(s.new_balance > 0)
+	{
+		strcpy(s.status,"Pending");
+	}
+	else{
+		strcpy(s.status,"Clear");
+	}
+	printf("\n\nEnter The Date of Last Payment [dd mm yy] : ");
+	scanf("%d %d %d",&s.dateofpay.dd,&s.dateofpay.mm,&s.dateofpay.yy);
+	printf("_________________________________________________________");
+	return s;
+}
+
+void setPrint(customer s[],int tc)
+{
+	int i;
+	printf("\n\tList Of Customers\n_________________________________________________________");
+	for( i = 0; i < tc; i++ )
+	{
+		printf("\n\n\tCustomer Id = %d \n\tCustomer Name = %s\n\tOld Balance = %.2f\n\tLast Payment = %.2f\n\tLast Payment Date = %d/%d/%d\n\tNew Balance = %.2f\n\n___________________________________________________________________",s[i].acc_no,s[i].name,s[i].old_balance,s[i].last_payment,s[i].dateofpay.dd,s[i].dateofpay.mm,s[i].dateofpay.yy,s[i].new_balance);
+	}
+}
+
+void menudriven(customer s[],int tc)
+{
+	int i,j,option,check;
+	char name[15];
+	printf("\n\nPress 1 To Display All Customer Details. \n\nPress 2 To Display Specific Customer By Name. \n\nPress 3 To Display Status of Customers. \n\nPress 4 To Display Current Balance of Customers. \n\nPress 5 To Exit Program.\n\n");\
+	scanf("%d",&option);
+	if(option == 1)
+	{
+		setPrint(s,tc);
+		menudriven(s,tc);
+	}
+	else if(option == 2)
+	{
+		printf("Enter Customer Name : ");
+		scanf("%s",name);
+		for( i = 0; i < tc; i++ )
+		{
+			check = strcmp(s[i].name,name);
+			if( check == 0 )
+			{
+				printf("\n\n\tCustomer Id = %d \n\tCustomer Name = %s\n\tOld Balance = %.2f\n\tLast Payment = %.2f\n\tLast Payment Date = %d/%d/%d\n\tNew Balance = %.2f \n\tStatus = %s \n\n___________________________________________________________________",s[i].acc_no,s[i].name,s[i].old_balance,s[i].last_payment,s[i].dateofpay.dd,s[i].dateofpay.mm,s[i].dateofpay.yy,s[i].new_balance,s[i].status);
+			}
+		}
+		menudriven(s,tc);
+	}
+	else if(option == 3)
+	{
+		for( i = 0; i < tc; i++ )
+		{
+			printf("\nCustomer Name = %s\n Status = %s\n_________________________________________________________",s[i].name,s[i].status);
+		}
+		menudriven(s,tc);
+	}
+	else if(option == 4)
+	{
+		for( i = 0; i < tc; i++ )
+		{
+			printf("\nCustomer Name = %s\n Current Balance = %.2f\n_________________________________________________________",s[i].name,s[i].new_balance);
+		}
+		menudriven(s,tc);
+	}
+	else if(option == 5)
+	{
+		exit(0);	
+	}
+	else
+	{
+		printf("Please Select Proper Options");
+		menudriven(s,tc);
+	}
+	printf("\nCustomer Does Not Exists.\n");
+	menudriven(s,tc);
+}
+
+/**************************************************************************************************************************************************************************************
+
+OUTPUT :
+
+Enter Total Number of Customer : 2
+
+
+Enter Account Number : 21196
+
+
+Enter The Customer's Name : Neel
+
+
+Enter The Old Balance : 600
+
+
+Enter The Last Payment : 400
+
+
+Enter The Date of Last Payment [dd mm yy] : 1  1 2019
+_________________________________________________________
+
+Enter Account Number : 211998
+
+
+Enter The Customer's Name : Suresh
+
+
+Enter The Old Balance : 4000	
+
+
+Enter The Last Payment : 1000
+
+
+Enter The Date of Last Payment [dd mm yy] : 20 01 2020
+_________________________________________________________
+
+
+_________________________________________________________       
+	
+	List Of Customers
+_________________________________________________________
+
+        Customer Id = 21196
+        Customer Name = Neel
+        Old Balance = 600.00
+        Last Payment = 400.00
+        Last Payment Date = 1/1/2019
+        New Balance = 200
+
+___________________________________________________________________
+
+        Customer Id = 21198
+        Customer Name = Suresh
+        Old Balance = 4000.00
+        Last Payment = 1000.00
+        Last Payment Date = 20/1/2020
+        New Balance = 30000
+___________________________________________________________________
+
+Press 1 To Display All Customer Details.
+
+Press 2 To Display Specific Customer By Name.
+
+Press 3 To Display Status of Customers.
+
+Press 4 To Display Current Balance of Customers.
+
+Press 5 To Exit Program.
+
+1
+        List Of Customers
+_________________________________________________________
+
+        Customer Id = 21196
+        Customer Name = Neel
+        Old Balance = 600.00
+        Last Payment = 400.00
+        Last Payment Date = 1/1/2019
+        New Balance = 200
+
+___________________________________________________________________
+
+        Customer Id = 21198
+        Customer Name = Suresh
+        Old Balance = 4000.00
+        Last Payment = 1000.00
+        Last Payment Date = 20/1/2020
+        New Balance = 30000
+
+___________________________________________________________________
+
+
+___________________________________________________________________
+
+Press 1 To Display All Customer Details.
+
+Press 2 To Display Specific Customer By Name.
+
+Press 3 To Display Status of Customers.
+
+Press 4 To Display Current Balance of Customers.
+
+Press 5 To Exit Program.
+
+2
+
+Enter Customer Name : Suresh
+
+
+        Customer Id = 21198
+        Customer Name = Suresh
+        Old Balance = 4000.00
+        Last Payment = 1000.00
+        Last Payment Date = 20/1/2020
+        New Balance = 30000
+
+___________________________________________________________________
+
+
+Press 1 To Display All Customer Details.
+
+Press 2 To Display Specific Customer By Name.
+
+Press 3 To Display Status of Customers.
+
+Press 4 To Display Current Balance of Customers.
+
+Press 5 To Exit Program.
+
+3
+
+Customer Name = Neel
+ Status = Pending
+_________________________________________________________
+Customer Name = Suresh
+ Status = Pending
+_____________________________________
+
+Press 1 To Display All Customer Details.
+
+Press 2 To Display Specific Customer By Name.
+
+Press 3 To Display Status of Customers.
+
+Press 4 To Display Current Balance of Customers.
+
+Press 5 To Exit Program.
+
+4
+
+Customer Name = Neel
+ Current Balance = 200.00
+_________________________________________________________
+Customer Name = Suresh
+ Current Balance = 3000.00
+_________________________________________________________
+
+
+Press 1 To Display All Customer Details.
+
+Press 2 To Display Specific Customer By Name.
+
+Press 3 To Display Status of Customers.
+
+Press 4 To Display Current Balance of Customers.
+
+Press 5 To Exit Program.
+
+******************************************************************************************************************************************************************************************/

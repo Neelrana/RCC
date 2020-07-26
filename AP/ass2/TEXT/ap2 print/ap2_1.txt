@@ -1,0 +1,63 @@
+*****************************************************************************************************************************************
+NAME    : NAMJOSHI SHUBHAM S.
+ROLL NO : 21
+CLASS   : MCA-II
+SUBJECT : ADVANCED PROGRAMMING(AP)
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+Q(1):	Write a program using pointers to read array of integers and print its elements in reverse order.	
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+
+void read(int[],int);
+void display_rev(int[],int);
+
+void main()
+{
+	int num[10],limit;
+	printf("How many numbers you want to enter: ");
+	scanf("%d",&limit);
+	read(num,limit);
+	display_rev(num,limit);
+	getch();
+}
+
+void read(int num[],int limit)
+{
+	int *pnum,i;
+	pnum=num;
+	printf("Enter %d numbers: ",limit);
+	for(i=0;i<limit;i++,pnum++)
+	{
+		scanf("%d",pnum);
+	}
+}
+
+void display_rev(int num[],int limit)
+{
+	int *pnum,i;
+	pnum=num;
+
+	printf("Nmbers in reverse order are: \n");
+	for(i=0;i<limit;i++,pnum--)
+	{
+		printf("%d ",*(pnum+limit-1));				//pnum+limit-1 is the address of last eliment in array
+	}
+}
+
+
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+output:
+
+How many numbers you want to enter: 3
+Enter 3 numbers: 2 1 0
+Nmbers in reverse order are:
+0 1 2
+
+*****************************************************************************************************************************************
+
+

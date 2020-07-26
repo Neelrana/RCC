@@ -1,0 +1,102 @@
+*****************************************************************************************************************************************
+NAME    : NAMJOSHI SHUBHAM S.
+ROLL NO : 21
+CLASS   : MCA-II
+SUBJECT : ADVANCED PROGRAMMING(AP)
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+Q(11L):	Sort an array of string.	
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+void readnames(char[][20],int);
+void sort(char[][20],int);
+void print(char[][20],int);
+
+void main()
+{
+	char names[5][20];
+	int limit;
+	printf("Hoe many names you have: ");
+	scanf("%d",&limit);
+	readnames(names,limit);
+	sort(names,limit);
+	print(names,limit);
+	getch();
+}
+
+void readnames(char names[][20],int limit)
+{
+	char (*cptr)[20];
+	int i;
+	cptr=names;
+	fflush(stdin);
+	printf("Enetr %d names: \n",limit);
+	for(i=0;i<limit;i++)
+	{
+		gets(*(cptr+i));
+	}
+}
+
+void sort(char names[][20],int limit)
+{
+	char (*cptr)[20],min[20];
+	int i,index,j;
+
+	cptr=names;
+
+	for(i=0;i<limit-1;i++)
+	{
+		strcpy(min,*(cptr+i));
+		index=i;
+
+		for(j=i+1;j<limit;j++)
+		{
+			if(strcmp(min,*(cptr+j))>0)
+			{
+				strcpy(min,*(cptr+j));
+				index=j;
+			}
+			
+		}
+		strcpy(*(cptr+index),*(cptr+i));
+		strcpy(*(cptr+i),min);
+	}
+
+}
+void print(char names[][20],int limit)
+{
+	char (*cptr)[20];
+	int i;
+	cptr=names;
+	printf("Sorted names:\n");
+	for(i=0;i<limit;i++)
+	{
+		puts(*(cptr+i));
+	}
+}
+
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+output:
+Hoe many names you have: 3
+Enetr 3 names:
+
+surat
+anand
+navsari
+
+Sorted names:
+
+anand
+navsari
+surat
+
+
+*****************************************************************************************************************************************
+
+

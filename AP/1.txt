@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<conio.h>
+
+
+struct student
+{
+	int rollno;
+	char name[50];
+};
+struct student getdata(struct student s1)
+{
+	printf("Enter RollNo :");
+	scanf("%d",&s1.rollno);
+	printf("Enter Name :");
+	scanf("%s",s1.name);
+	return s1;
+}
+void disp_data(struct student s1)
+{
+	printf("\n\nRoll No = %d",s1.rollno);
+	printf("\n\nName = %s",s1.name);
+	
+}
+void sort(struct student s1[],int n)
+{
+	int i,j;
+	struct student temp;
+	for(i=0;i<n-1;i++)
+	{
+		for(j=0;j<(n-i)-1;j++)
+		{
+			if(s1[j].rollno > s1[j+1].rollno)
+			{
+				temp=s1[j];
+				s1[j]=s1[j+1];
+				s1[j+1]=temp;
+			}
+		}
+	}
+}
+void main()
+{
+	int n,i;
+	printf("Enter Number of students : ");
+	scanf("%d",&n);
+	struct student s;
+	struct student sp[20];
+	for(i=0;i<n;i++)
+	{
+		sp[i]=getdata(s);
+	}
+	for(i=0;i<n;i++)
+	{
+		disp_data(sp[i]);
+	}
+	sort(sp,n);
+	printf("After Sorting :");
+	for(i=0;i<n;i++)
+	{
+		disp_data(sp[i]);
+	}
+}

@@ -1,0 +1,185 @@
+Name : Neel Golarana
+Roll No: 09
+Sub: A.P.
+Class : MCA-II
+
+=========================================================================================================================
+2.  Write a program to create a singly linked list and display its elements in LIFO pattern.
+	Also display the number of elements in the list.
+=========================================================================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+struct student {
+	int r_no;
+	float marks;
+	struct student *next;
+};
+
+struct student *insert_node(struct student *first){
+	struct student *temp = (struct student*)malloc(sizeof(struct student));
+	printf("Enter the no of student:\n");
+	scanf("%d",&temp->r_no);
+	printf("Enter the marks of the student:\n");
+	scanf("%f",&temp->marks);
+	temp->next = NULL;
+	if(first == NULL){
+		first = temp ;
+	}
+	else{
+		temp->next = first ;
+	}
+}
+
+struct student* delete_first(struct student *first ){
+	struct student *temp;
+	if(first == NULL){
+		printf("Linkedlist is empty:\n");
+	}
+	else{
+		temp = first->next;
+		free(first);
+		first = temp;
+		printf("Node deleted successfully:\n");
+		return(temp);
+	}	
+}
+struct student* delete_first(struct student *first ){
+	struct student *temp;
+	if(first == NULL){
+		printf("Linkedlist is empty:\n");
+	}
+	else{
+		if(first->next == NULL){
+			free(first);
+			first = NULL;
+			printf("\nNow linkedlist is empty\n");
+		}
+		else{
+			temp = first->next;
+			free(first);
+			first = temp;
+			printf("Node deleted successfully:\n");
+		}
+		return(temp);	
+	}	
+}
+
+int main(){
+	struct student *first = NULL;
+	int i,n,no = 1,cnt = 0;	
+		while(no != 0){
+			printf("\n\n1-> Enter the linked list in LIFO paattern:\n");
+			printf("2-> Display the linkedlist:\n");
+			printf("3-> Delete the first node from the list:\n");
+			printf("0-> Exit\n");
+			printf("\nEnter the no from above:\n");
+			scanf("%d",&no);
+			if(no == 1){
+				printf("How many nodes you want to enter:\n");
+				scanf("%d",&n);
+				for(i=0;i<n;i++){
+					first = insert_node(first);
+					cnt++;
+				}
+				printf("Node inserted successfully:\n");
+			}
+			if(no == 2){
+				display(first);
+				printf("Total no. of element in the list is %d ",cnt);
+			}
+			if(no == 3){
+				first = delete_first(first);
+				if(first != NULL){
+					cnt--;
+				}
+			}
+			if(no == 0){
+				exit(1);
+			}
+		}
+		
+}
+
+=========================================================================================================================
+Output:
+=========================================================================================================================
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter the no from above:
+1
+How many nodes you want to enter:
+3
+Enter the no of student:
+1
+Enter the marks of the student:
+56
+Enter the no of student:
+2
+Enter the marks of the student:
+78
+Enter the no of student:
+3
+Enter the marks of the student:
+98
+Node inserted successfully:
+
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter the no from above:
+2
+
+========================
+NO               Marks:
+========================
+3               98.000000
+2               78.000000
+1               56.000000
+Total no. of element in the list is 3
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter the no from above:
+3
+Node deleted successfully:
+
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter the no from above:
+2
+
+========================
+NO               Marks:
+========================
+2               78.000000
+1               56.000000
+Total no. of element in the list is 2
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter the no from above:
+0
+
+--------------------------------
+Process exited after 27 seconds with return value 1
+Press any key to continue . . .
+
+=========================================================================================================================

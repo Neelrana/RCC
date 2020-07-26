@@ -1,0 +1,65 @@
+*****************************************************************************************************************************************
+NAME    : NAMJOSHI SHUBHAM S.
+ROLL NO : 21
+CLASS   : MCA-II
+SUBJECT : ADVANCED PROGRAMMING(AP)
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+Q(3):	Write a program to count the number of vowels, consonants, digits and white space characters using pointers.	
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+void check(char[]);
+void main()
+{
+	char str[30];
+	printf("Enter string: ");
+	gets(str);
+	check(str);
+	getch();
+}
+
+void check(char str[])
+{
+	int vowel=0,consonents=0,digits=0,white_spaces=0,i;
+
+	for(i=0;str[i] != '\0';i++)
+	{
+		if(str[i]=='a' || str[i]=='A' || str[i]=='e' || str[i]=='E' || str[i]=='i' || str[i]=='I' || str[i]=='o' || str[i]=='O' || str[i]=='u' || str[i]=='U')
+		{
+			vowel++;
+		}
+		else if((str[i]>65 && str[i]<91 ) || (str[i]>97 && str[i]<123))
+		{
+			consonents++;
+		}
+		else if(str[i]==' ')
+		{
+			white_spaces++;
+		}
+		else if(str[i]> 47 && str[i] < 58)
+		{
+			digits++;
+		}
+	}
+	printf("Number of\n");
+	printf("vowels: %d\nconsonents= %d\ndigits= %d\nwhite spaces= %d",vowel,consonents,digits,white_spaces);
+}
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+output:
+
+Enter string: Mca-2 batch of 2019
+Number of
+vowels: 3
+consonents= 7
+digits= 5
+white spaces= 3
+
+*****************************************************************************************************************************************
+
+

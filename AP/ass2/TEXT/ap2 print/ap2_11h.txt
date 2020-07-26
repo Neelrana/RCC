@@ -1,0 +1,57 @@
+*****************************************************************************************************************************************
+NAME    : NAMJOSHI SHUBHAM S.
+ROLL NO : 21
+CLASS   : MCA-II
+SUBJECT : ADVANCED PROGRAMMING(AP)
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+Q(11h):	Copy n characters of one string to another string.	
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+void copy_n(char[],char[],int);
+void main()
+{
+	char str1[30],str2[30];
+	int n;
+
+	printf("Enter First string : ");
+	gets(str1);
+	printf("Enter second string to copy: ");
+	gets(str2);
+	printf("Enter How many numbers you want to copy: ");
+	scanf("%d",&n);
+	copy_n(str1,str2,n);
+	printf("New first string: ");
+	puts(str1);
+	getch();
+}
+
+void copy_n(char str1[],char str2[],int n)
+{
+	int i;
+	char *sptr1,*sptr2;
+	sptr1=str1;
+	sptr2=str2;
+
+	for(i=0;i<n;i++)
+	{
+		*(sptr1+i)=*(sptr2+i);
+	}
+	*(sptr1+i)='\0';
+}
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+output:
+Enter First string : shubhuuu
+Enter second string to copy: great preogramer
+Enter How many numbers you want to copy: 5
+New first string: great
+
+*****************************************************************************************************************************************
+
+

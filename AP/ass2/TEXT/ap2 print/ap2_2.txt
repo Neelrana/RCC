@@ -1,0 +1,92 @@
+*****************************************************************************************************************************************
+NAME    : NAMJOSHI SHUBHAM S.
+ROLL NO : 21
+CLASS   : MCA-II
+SUBJECT : ADVANCED PROGRAMMING(AP)
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+Q(2):	Write a program using pointers to find minimum and maximum element of an array and display it along with the address at 
+	which it is located.	
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+
+void read(int[],int);
+int *min(int[],int);
+int *max(int[],int);
+
+void main()
+{
+	int num[10],limit,*pmin,*pmax;
+	printf("How many numbers you want ot enter: ");
+	scanf_s("%d",&limit);
+	read(num,limit);
+	pmin=min(num,limit);
+	pmax=max(num,limit);
+	printf("\nMin=%d at address %d,\nMax=%d at address %d",(*pmin),pmin,(*pmax),pmax);
+	getch();
+}
+
+void read(int num[],int limit)
+{
+	int *iptr,i;
+	iptr=num;
+	
+	printf("\nEnter %d numbers: ",limit);
+	for(i=0;i<limit;i++)
+	{
+		scanf("%d",iptr);
+		iptr++;
+	}
+}
+int *min(int num[],int limit)
+{
+	int *iptr,i,*n;
+	iptr=num;
+
+	n=num;
+
+	for(i=1;i<limit;i++)
+	{
+		if(*n>*(iptr+i))
+		{
+			n=iptr+i;
+		}
+	}
+
+	return n;
+}
+
+int *max(int num[],int limit)
+{
+	int *iptr,i,*m;
+	iptr=num;
+
+	m=num;
+
+	for(i=1;i<limit;i++)
+	{
+		if(*m<*(iptr+i))
+		{
+			m=iptr+i;
+		}
+	}
+
+	return m;
+}
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+output:
+
+How many numbers you want ot enter: 5
+
+Enter 5 numbers: 2 0 4 9 1
+
+Min=0 at address 2620296,
+Max=9 at address 2620304
+
+*****************************************************************************************************************************************
+
+

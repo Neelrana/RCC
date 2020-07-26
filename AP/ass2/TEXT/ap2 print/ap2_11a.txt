@@ -1,0 +1,60 @@
+*****************************************************************************************************************************************
+NAME    : NAMJOSHI SHUBHAM S.
+ROLL NO : 21
+CLASS   : MCA-II
+SUBJECT : ADVANCED PROGRAMMING(AP)
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+Q(11a):	Find the first occurrence of a character in the given string. The function should return the position in the string.	
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+int search_c(char[],char*);
+void main()
+{
+	char str[10],ch;
+	int index;
+	printf("Enter string: ");
+	gets(str);
+	printf("Enter character to find its first occurence in your string: ");
+	scanf("%c",&ch);
+
+	index=search_c(str,&ch);
+
+	if(index == -1)
+		printf("Character not found in your string!!!");
+	else
+		printf("Your characters first occurrence is at %d index in string",index);
+
+	getch();
+}
+
+int search_c(char str[],char *cptr)
+{
+	char *sptr;
+	int i=0;
+	sptr=str;
+
+	for(i=0;*(sptr+i) != '\0';i++)
+	{
+		if(*(sptr+i) == *cptr)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+output:
+Enter string: shubhuuu
+Enter character to find its first occurence in your string: u
+Your characters first occurrence is at 2 index in string
+
+*****************************************************************************************************************************************
+
+

@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main(){
+	
+	FILE *fptr;
+	int num;
+	char name[20];
+	//fptr = fopen("Student.txt","w+"); // if file is not created w+ it creates the file and write in the file
+	fptr = fopen("Student.txt","a+"); // it opens the file and append the file.
+	
+	if(fptr == NULL){
+		printf("Error\n");
+		exit(1);		
+	}
+	
+	printf("Enter the num\n");
+	scanf("%d",&num);
+	
+	printf("Enter the name :\n");
+	fflush(stdin);
+	scanf("%s",name);
+	
+	fprintf(fptr,"%3d",num);
+	fprintf(fptr,"%16s",name);
+	printf("Record entered successfully\n");
+	
+	fclose(fptr);
+	
+	
+	fptr = fopen("Student.txt","r");
+	printf("The data in the file is:\n");
+	while(!feof(fptr)){
+		fscanf(fptr,"%3d",&num);
+		fscanf(fptr,"%16s",&name);
+		printf("%d\t",num);
+		printf("%s\n",name);
+	}
+		fclose(fptr);
+	
+	return 0;
+}
+
+
+/*stored in the file in this type:
+
+  9            neel 10          pradip 36         preksha 32          pushti
+  
+*/
+
+// every time opens the file and append the file and every time read all the records of the file.
